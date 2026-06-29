@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-green: #059669; /* Ikut warna dashboard kau */
+    --green-dark: #047857;
+    --bg-light: #f9fafb;
+    --text-main: #1f2937;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-light);
+    color: var(--text-main);
+}
+
+/* NAVBAR STYLE (Ikut Home.jsp) */
+.top-bar {
+    background: white;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border-bottom: 1px solid #edf2f7;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    color: var(--primary-green);
+    font-size: 20px;
+}
+
+.logo-icon-box {
+    background: var(--primary-green);
+    color: white;
+    padding: 6px 8px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #4b5563;
+    margin-left: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+nav a:hover, nav a.active {
+    color: var(--primary-green);
+    font-weight: 700;
+}
+
+.logout-link {
+    color: #ef4444 !important;
+}
+
+/* MAIN CONTENT */
+.main-content {
+    padding: 40px 5%;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.form-header {
+    margin-bottom: 25px;
+    border-left: 4px solid var(--primary-green);
+    padding-left: 15px;
+}
+
+.form-header h2 {
+    font-size: 22px;
+    color: var(--text-main);
+}
+
+.form-header p {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+/* INPUT STYLES */
+.input-group {
+    margin-bottom: 18px;
+}
+
+.row {
+    display: flex;
+    gap: 15px;
+}
+
+.row .input-group {
+    flex: 1;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+}
+
+input, select {
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-green);
+    ring: 2px var(--primary-green);
+}
+
+.readonly-input {
+    background-color: #f3f4f6;
+    color: #6b7280;
+    cursor: not-allowed;
+}
+
+/* BUTTON */
+.btn-submit {
+    width: 100%;
+    padding: 14px;
+    background: var(--primary-green);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background: var(--green-dark);
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+
+.alert {
+    background: #fee2e2;
+    color: #b91c1c;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    border: 1px solid #fecaca;
+}

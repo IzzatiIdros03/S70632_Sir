@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary: #047857;       /* Emerald Green */
+    --primary-light: #d1fae5;
+    --primary-hover: #065f46;
+    --accent: #f59e0b;        /* Gold/Orange */
+    --dark: #1f2937;
+    --gray: #6b7280;
+    --white: #ffffff;
+    --bg-body: #f3f4f6;
+    --border: #e5e7eb;
+    --danger: #ef4444;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-body);
+    color: var(--dark);
+}
+
+/* --- NAVBAR (Copy style Home) --- */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--white);
+    padding: 15px 5%;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    border-bottom: 1px solid var(--border);
+}
+
+.logo {
+    display: flex; align-items: center;
+    font-weight: 700; font-size: 20px; color: var(--primary);
+    letter-spacing: -0.5px;
+}
+
+.logo-circle {
+    width: 35px; height: 35px;
+    background: linear-gradient(135deg, #0b8a83 0%, #056d67 100%);
+    border-radius: 8px; margin-right: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 16px;
+    box-shadow: 0 4px 10px rgba(11, 138, 131, 0.2);
+}
+
+.top-bar nav { display: flex; align-items: center; }
+
+.top-bar nav a {
+    margin-left: 20px;
+    font-size: 14px; font-weight: 500;
+    color: var(--gray); text-decoration: none; transition: 0.3s;
+}
+
+.top-bar nav a:hover, .top-bar nav a.active {
+    color: var(--primary); font-weight: 600;
+}
+
+.admin-badge {
+    background: var(--dark); color: white;
+    padding: 5px 12px; border-radius: 6px;
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.5px; margin-right: 15px;
+}
+
+.btn-logout { color: var(--danger) !important; }
+.btn-logout:hover { color: #b91c1c !important; }
+
+/* --- CONTENT --- */
+.admin-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 5%;
+}
+
+.admin-header { margin-bottom: 30px; }
+.admin-header h1 { font-size: 26px; font-weight: 700; color: var(--dark); margin-bottom: 5px; }
+.admin-header p { color: var(--gray); font-size: 14px; }
+
+/* ALERT */
+.alert-success {
+    background: #ecfdf5; color: #065f46;
+    padding: 12px; border-radius: 8px; margin-bottom: 20px;
+    border: 1px solid #a7f3d0; font-size: 14px; display: flex; align-items: center; gap: 8px;
+}
+
+/* TABLE CARD */
+.table-card {
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.table-responsive { width: 100%; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+
+thead { background: #f9fafb; border-bottom: 2px solid var(--border); }
+th { text-align: left; padding: 18px 20px; font-weight: 600; color: var(--gray); text-transform: uppercase; font-size: 12px; letter-spacing: 0.05em; }
+td { padding: 18px 20px; border-bottom: 1px solid var(--bg-body); vertical-align: middle; }
+tbody tr:hover { background-color: #f9fafb; }
+
+/* USER INFO */
+.id-badge { font-weight: 600; color: var(--gray); font-size: 13px; }
+.user-info { display: flex; align-items: center; gap: 10px; }
+.avatar-small {
+    width: 30px; height: 30px; background: #e5e7eb; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: var(--gray);
+}
+.user-id { font-weight: 500; font-size: 13px; color: var(--dark); }
+
+/* DATE COLUMN */
+.date-col { display: flex; flex-direction: column; gap: 4px; font-size: 13px; }
+.date-col span { display: flex; align-items: center; gap: 6px; }
+.start { color: var(--primary); }
+.end { color: var(--danger); }
+
+/* STATUS BADGES */
+.status-badge {
+    display: inline-flex; padding: 5px 12px; border-radius: 99px;
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+}
+.status-PENDING { background: #fffbeb; color: #b45309; border: 1px solid #fcd34d; }
+.status-APPROVED { background: #ecfdf5; color: #047857; border: 1px solid #6ee7b7; }
+.status-REJECTED { background: #fef2f2; color: #b91c1c; border: 1px solid #fca5a5; }
+
+/* ACTION BUTTONS (PREMIUM LOOK) */
+.action-group {
+    display: flex; justify-content: center; gap: 8px;
+}
+
+.btn-icon {
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    border: none;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Edit Button (Gold) */
+.btn-edit {
+    background: #fff7ed; color: #ea580c; border: 1px solid #fed7aa;
+    text-decoration: none;
+}
+.btn-edit:hover { background: #ea580c; color: white; border-color: #ea580c; }
+
+/* Approve Button (Green) */
+.btn-approve {
+    background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0;
+}
+.btn-approve:hover { background: #059669; color: white; border-color: #059669; transform: translateY(-2px); }
+
+/* Reject Button (Red) */
+.btn-reject {
+    background: #fef2f2; color: #dc2626; border: 1px solid #fecaca;
+}
+.btn-reject:hover { background: #dc2626; color: white; border-color: #dc2626; transform: translateY(-2px); }
+
+.status-done {
+    display: block; text-align: center;
+    color: #d1d5db; font-size: 12px; font-style: italic;
+}
+
+.empty-row { text-align: center; padding: 50px; color: var(--gray); }
+.empty-row i { font-size: 32px; margin-bottom: 10px; display: block; opacity: 0.5; }

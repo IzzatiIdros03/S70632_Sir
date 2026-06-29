@@ -1,0 +1,23 @@
+# NetBeans / Ant build outputs
+/build/
+/dist/
+
+# NetBeans private settings
+/nbproject/private/
+
+# IDE / OS noise
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local env files
+.env
+.env.*
+
+# Local payment config (secrets)
+/web/WEB-INF/toyyibpay.properties
+
+# Local tooling downloads
+/.tools/
