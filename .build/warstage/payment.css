@@ -1,0 +1,131 @@
+/* payment.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+}
+
+/* TOP BAR (FOLLOW HOME.CSS) */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-circle {
+    width: 40px;
+    height: 40px;
+    background-color: #0d9488; /* Warna teal masjid */
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    box-shadow: 0 4px 10px rgba(13, 148, 136, 0.2);
+}
+
+.logo span {
+    font-weight: 700;
+    font-size: 22px;
+    color: #1f2937;
+    letter-spacing: 0.5px;
+}
+
+nav a {
+    margin-left: 25px;
+    text-decoration: none;
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+nav a:hover, nav a.active {
+    color: #0d9488;
+}
+
+/* RECEIPT CARD DESIGN */
+.receipt-card {
+    background: #ffffff;
+    max-width: 450px;
+    margin: 60px auto;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+}
+
+.receipt-header {
+    text-align: center;
+    border-bottom: 2px dashed #e5e7eb;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.receipt-header h2 {
+    margin: 0;
+    color: #111827;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.receipt-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.receipt-label {
+    color: #9ca3af;
+    font-weight: 500;
+}
+
+.receipt-value {
+    color: #1f2937;
+    font-weight: 600;
+}
+
+.total-section {
+    border-top: 2px dashed #e5e7eb;
+    margin-top: 25px;
+    padding-top: 25px;
+}
+
+.total-amount {
+    font-size: 32px;
+    color: #0d9488;
+    font-weight: 800;
+}
+
+.pay-button {
+    width: 100%;
+    background-color: #14532d; /* Hijau gelap yang awak suka dalam image_6ada21.png */
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 15px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 25px;
+    box-shadow: 0 8px 15px rgba(20, 83, 45, 0.2);
+}
+
+.pay-button:hover {
+    background-color: #064e3b;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 20px rgba(20, 83, 45, 0.3);
+}

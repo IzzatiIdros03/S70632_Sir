@@ -412,7 +412,15 @@ public class ActivityController extends HttpServlet {
             obj.put("extendedProps", props);
             arr.put(obj);
         }
-        return arr.toString();
+        return sanitizeJsonForScriptTag(arr.toString());
+    }
+
+    /** Prevent embedded JSON from breaking the HTML parser (e.g. </script> in descriptions). */
+    private String sanitizeJsonForScriptTag(String json) {
+        if (json == null || json.isEmpty()) {
+            return "[]";
+        }
+        return json.replace("<", "\\u003c");
     }
 
     private void loadCoordinatorPage(HttpServletRequest req, HttpServletResponse resp)

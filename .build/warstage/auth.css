@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    --green-main: #0b8a83;
+    --green-gradient: linear-gradient(135deg, #0b8a83 0%, #056d67 100%);
+    --gray-bg: #f3f4f6;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(5,60,55,0.72) 0%, rgba(0,0,0,0.50) 100%);
+    z-index: 0;
+}
+
+body > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* KAD LOGIN */
+.auth-card {
+    width: 400px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 40px 35px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.6);
+}
+
+/* ANIMASI MASUK */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to   {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.auth-card {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.auth-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--green-gradient);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 32px;
+    box-shadow: 0 10px 20px rgba(11, 138, 131, 0.25);
+    transition: transform 0.3s ease;
+}
+
+.auth-icon:hover {
+    transform: scale(1.05) rotate(5deg);
+}
+
+.auth-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 5px;
+}
+
+.auth-subtitle {
+    font-size: 14px;
+    color: #9ca3af;
+    margin-bottom: 25px;
+}
+
+.auth-card form {
+    text-align: left;
+}
+
+.auth-card label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+    margin-top: 15px;
+    margin-bottom: 6px;
+}
+
+.auth-card input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    font-size: 14px;
+    background: #f9fafb;
+    transition: all 0.2s;
+}
+
+.auth-card input:focus {
+    outline: none;
+    background: #fff;
+    border-color: var(--green-main);
+    box-shadow: 0 0 0 3px rgba(11, 138, 131, 0.1);
+}
+
+.auth-button {
+    margin-top: 25px;
+    width: 100%;
+    padding: 12px;
+    background: var(--green-gradient);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(11, 138, 131, 0.2);
+    transition: all 0.2s;
+}
+
+.auth-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(11, 138, 131, 0.3);
+}
+
+.auth-extra {
+    margin-top: 20px;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.auth-extra a {
+    color: var(--green-main);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-extra a:hover {
+    text-decoration: underline;
+}
+
+.alert {
+    background: #fef2f2;
+    color: #ef4444;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    border: 1px solid #fee2e2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
