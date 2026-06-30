@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 // /activity             → halaman user (lihat & mohon)
 // /coordinator/activity → halaman coordinator (urus semua + approve)
@@ -200,7 +203,8 @@ public class ActivityController extends HttpServlet {
                 e.setTime(sqlTime);
                 e.setLocation(req.getParameter("location") != null ? req.getParameter("location").trim() : "");
                 e.setDescription(req.getParameter("description") != null ? req.getParameter("description").trim() : "");
-                e.setStatus("PENDING_APPROVAL"); // Kembalikan status ke pending sekiranya diedit untuk pengesahan semula
+                e.setStatus(existing.getStatus() != null ? existing.getStatus() : "UPCOMING");
+                e.setRequestStatus("PENDING_APPROVAL");
 
                 boolean ok = eventDAO.updateEvent(e);
                 if (ok) {
@@ -381,12 +385,34 @@ public class ActivityController extends HttpServlet {
             throws ServletException, IOException {
         // Auto-delete aktiviti yang dah COMPLETED
         eventDAO.deleteCompleted();
+        List<Event> calendarEvents = eventDAO.getEventsForCalendar();
         req.setAttribute("approvedEvents", eventDAO.getApprovedEvents());
-        req.setAttribute("calendarEvents", eventDAO.getEventsForCalendar());
+        req.setAttribute("calendarEvents", calendarEvents);
+        req.setAttribute("calendarEventsJson", buildCalendarEventsJson(calendarEvents));
         req.setAttribute("myEvents", eventDAO.getMyEvents(user.getUserId()));
         req.setAttribute("countUpcoming", eventDAO.countUpcoming());
         req.setAttribute("minDate", LocalDate.now().plusDays(3).toString());
         req.getRequestDispatcher("/activity.jsp").forward(req, resp);
+    }
+
+    private String buildCalendarEventsJson(List<Event> events) {
+        JSONArray arr = new JSONArray();
+        for (Event ev : events) {
+            JSONObject props = new JSONObject();
+            props.put("eventId", String.valueOf(ev.getEventId()));
+            props.put("location", ev.getLocation() != null ? ev.getLocation() : "-");
+            props.put("time", ev.getTime() != null ? ev.getTime().toString() : "");
+            props.put("organizer", ev.getUserName() != null ? ev.getUserName() : "-");
+            props.put("dateStr", ev.getDate() != null ? ev.getDate().toString() : "");
+            props.put("description", ev.getDescription() != null ? ev.getDescription() : "");
+
+            JSONObject obj = new JSONObject();
+            obj.put("title", ev.getName() != null ? ev.getName() : "");
+            obj.put("start", ev.getDate() != null ? ev.getDate().toString() : "");
+            obj.put("extendedProps", props);
+            arr.put(obj);
+        }
+        return arr.toString();
     }
 
     private void loadCoordinatorPage(HttpServletRequest req, HttpServletResponse resp)

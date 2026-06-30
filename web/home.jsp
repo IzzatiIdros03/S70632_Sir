@@ -605,7 +605,7 @@
                     <a href="${pageContext.request.contextPath}/home" class="active">Utama</a>
                     <a href="${pageContext.request.contextPath}/user/bookings">Tempahan</a>
                     <a href="${pageContext.request.contextPath}/profile.jsp">Profil AJK</a>
-                    <a href="${pageContext.request.contextPath}/activity.jsp">Aktiviti</a>
+                    <a href="${pageContext.request.contextPath}/activity">Aktiviti</a>
                     <a href="${pageContext.request.contextPath}/donation.jsp">Sumbangan</a>
                     <a href="${pageContext.request.contextPath}/contact.jsp">Hubungi</a>
                 </nav>
@@ -634,7 +634,7 @@
                 <a href="${pageContext.request.contextPath}/home">Utama</a>
                 <a href="${pageContext.request.contextPath}/user/bookings">Tempahan</a>
                 <a href="${pageContext.request.contextPath}/profile.jsp">Profil AJK</a>
-                <a href="${pageContext.request.contextPath}/activity.jsp">Aktiviti</a>
+                <a href="${pageContext.request.contextPath}/activity">Aktiviti</a>
                 <a href="${pageContext.request.contextPath}/donation.jsp">Sumbangan</a>
                 <a href="${pageContext.request.contextPath}/contact.jsp">Hubungi</a>
                 <a href="${pageContext.request.contextPath}/logout" class="mobile-logout">
@@ -709,7 +709,7 @@
                         </div>
                         <div class="card-footer"><span>Lihat Profil</span><i class="fa-solid fa-arrow-right"></i></div>
                     </a>
-                    <a href="${pageContext.request.contextPath}/activity.jsp" class="feature-card" style="--card-color:#d97706;--card-light:#fffbeb;">
+                    <a href="${pageContext.request.contextPath}/activity" class="feature-card" style="--card-color:#d97706;--card-light:#fffbeb;">
                         <div class="card-bg-icon"><i class="fa-solid fa-mosque"></i></div>
                         <div class="card-icon-wrap"><i class="fa-solid fa-mosque"></i></div>
                         <div class="card-body">

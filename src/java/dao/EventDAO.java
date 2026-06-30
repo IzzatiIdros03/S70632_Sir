@@ -167,7 +167,10 @@ public class EventDAO {
 
     // ===== Update event (nama, tarikh, masa, lokasi, penerangan, status) =====
     public boolean updateEvent(Event e) {
-        String sql = "UPDATE event SET name=?, date=?, time=?, location=?, description=?, status=? WHERE event_id=?";
+        boolean updateRequestStatus = e.getRequestStatus() != null;
+        String sql = updateRequestStatus
+                ? "UPDATE event SET name=?, date=?, time=?, location=?, description=?, status=?, request_status=? WHERE event_id=?"
+                : "UPDATE event SET name=?, date=?, time=?, location=?, description=?, status=? WHERE event_id=?";
         try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, e.getName());
             ps.setDate(2, e.getDate());
@@ -179,7 +182,12 @@ public class EventDAO {
             ps.setString(4, e.getLocation());
             ps.setString(5, e.getDescription());
             ps.setString(6, e.getStatus() != null ? e.getStatus() : "UPCOMING");
-            ps.setInt(7, e.getEventId());
+            if (updateRequestStatus) {
+                ps.setString(7, e.getRequestStatus());
+                ps.setInt(8, e.getEventId());
+            } else {
+                ps.setInt(7, e.getEventId());
+            }
             return ps.executeUpdate() > 0;
         } catch (SQLException ex) {
             System.out.println("updateEvent error: " + ex.getMessage());

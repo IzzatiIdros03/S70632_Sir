@@ -652,7 +652,7 @@
                     <a href="${pageContext.request.contextPath}/home">Utama</a>
                     <a href="${pageContext.request.contextPath}/user/bookings">Tempahan</a>
                     <a href="${pageContext.request.contextPath}/profile.jsp" class="active">Profil AJK</a>
-                    <a href="${pageContext.request.contextPath}/activity.jsp">Aktiviti</a>
+                    <a href="${pageContext.request.contextPath}/activity">Aktiviti</a>
                     <a href="${pageContext.request.contextPath}/donation.jsp">Sumbangan</a>
                     <a href="${pageContext.request.contextPath}/contact.jsp">Hubungi</a>
                 </nav>
@@ -681,7 +681,7 @@
                 <a href="${pageContext.request.contextPath}/home">Utama</a>
                 <a href="${pageContext.request.contextPath}/user/bookings">Tempahan</a>
                 <a href="${pageContext.request.contextPath}/profile.jsp">Profil AJK</a>
-                <a href="${pageContext.request.contextPath}/activity.jsp">Aktiviti</a>
+                <a href="${pageContext.request.contextPath}/activity">Aktiviti</a>
                 <a href="${pageContext.request.contextPath}/donation.jsp">Sumbangan</a>
                 <a href="${pageContext.request.contextPath}/contact.jsp">Hubungi</a>
                 <a href="${pageContext.request.contextPath}/logout" class="mobile-logout">

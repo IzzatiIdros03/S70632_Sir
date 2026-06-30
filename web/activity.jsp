@@ -1,4 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%
+    if (request.getAttribute("calendarEvents") == null) {
+        response.sendRedirect(request.getContextPath() + "/activity");
+        return;
+    }
+%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean id="currentUser" scope="session" class="model.User" />
@@ -1770,6 +1776,9 @@
                 height:10px;
                 border-radius:50%;
             }
+            #activityCalendar{
+                min-height:420px;
+            }
             #activityCalendar .fc-button-primary{
                 background:var(--green)!important;
                 border-color:var(--green)!important;
@@ -2423,23 +2432,16 @@
             });
         </script>
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+        <script type="application/json" id="calendarEventsData">${calendarEventsJson}</script>
         <script>
-            // Build events array from JSTL — bawa tarikh mentah, warna dikira di JS ikut tarikh sebenar hari ini
-            var calEvents = [
-            <c:forEach items="${calendarEvents}" var="ev" varStatus="loop">
-            {
-            title: "${ev.name}",
-                    start: "${ev.date}",
-                    extendedProps: {
-                    eventId: "${ev.eventId}",
-                            location: "${ev.location != null ? ev.location : '-'}",
-                            time: "${ev.time != null ? ev.time : ''}",
-                            organizer: "${ev.userName != null ? ev.userName : '-'}",
-                            dateStr: "${ev.date}"
-                    }
-            }<c:if test="${!loop.last}">,</c:if>
-            </c:forEach>
-            ];
+            var calEvents = [];
+            try {
+                var calDataEl = document.getElementById('calendarEventsData');
+                calEvents = JSON.parse(calDataEl ? calDataEl.textContent : '[]');
+            } catch (e) {
+                console.error('Gagal parse data kalendar:', e);
+                calEvents = [];
+            }
 
             // Kira status sebenar event berbanding tarikh hari ini (bukan dari status DB)
             function getEventTimeStatus(dateStr) {
@@ -2465,10 +2467,9 @@
                 ev.extendedProps.status = getEventTimeStatus(ev.start);
             });
 
-            // Helper: ambil description dari hidden div by event ID
-            function getEventDescription(eventId) {
-                var el = document.getElementById('desc-ev-' + eventId);
-                return el ? el.textContent : '';
+            // Helper: ambil description dari extendedProps
+            function getEventDescription(props) {
+                return props && props.description ? props.description : '';
             }
 
             // ===== MODAL POPUP FUNCTIONS =====
@@ -2499,8 +2500,8 @@
                 else
                     countdown = '<i class="fa-solid fa-check"></i> Telah berlalu';
 
-                // Ambil description dari hidden DOM element
-                var description = getEventDescription(props.eventId);
+                // Ambil description dari data event
+                var description = getEventDescription(props);
 
                 // Build modal HTML
                 var modalHTML =
@@ -2617,12 +2618,5 @@
 
         <!-- ===== EVENT DETAIL MODAL (popup bila klik kalendar) ===== -->
         <div id="eventModalOverlay" class="ev-modal-overlay"></div>
-
-        <!-- ===== HIDDEN DESCRIPTION STORE (untuk modal popup) ===== -->
-        <div style="display:none;" aria-hidden="true">
-            <c:forEach items="${calendarEvents}" var="ev">
-                <div id="desc-ev-${ev.eventId}"><c:out value="${ev.description}" default="" /></div>
-            </c:forEach>
-        </div>
     </body>
 </html>
