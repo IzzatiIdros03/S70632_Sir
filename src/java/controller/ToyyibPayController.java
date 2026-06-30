@@ -24,7 +24,10 @@ import org.json.JSONObject;
 @WebServlet(name = "ToyyibPayController", urlPatterns = {"/payment/createBill", "/payment/return"})
 public class ToyyibPayController extends HttpServlet {
 
-    private static final String APP_CONTEXT = "/S70632_Sir";
+    // Context path aplikasi — boleh override guna environment variable MMS_APP_CONTEXT.
+    // Bila deploy ke Railway sebagai ROOT.war, set MMS_APP_CONTEXT = "" (string kosong)
+    // supaya returnUrl yang dijana tidak mengandungi "/S70632_Sir" yang tidak wujud lagi.
+    private static String appContext = "/S70632_Sir";
 
     private BookingDAO bookingDAO;
 
@@ -45,6 +48,11 @@ public class ToyyibPayController extends HttpServlet {
         catDonation = getConfig("TOYYIBPAY_CAT_DONATION", "toyyibpay.cat_donation", "d6hgyn2q");
         toyyibpayBaseUrl = normalizeBaseUrl(getConfig("TOYYIBPAY_BASE_URL", "toyyibpay.base_url", "https://dev.toyyibpay.com/"));
         publicBaseUrl = normalizePublicBaseUrl(getConfig("MMS_PUBLIC_BASE_URL", "mms.public_base_url", "http://localhost:8081"));
+        appContext = getConfig("MMS_APP_CONTEXT", "mms.app_context", "/S70632_Sir");
+        // Normalisasi: kalau env diset sebagai "/" atau "ROOT", anggap context kosong
+        if (appContext == null || appContext.equalsIgnoreCase("/") || appContext.equalsIgnoreCase("ROOT")) {
+            appContext = "";
+        }
     }
 
     @Override
@@ -315,7 +323,7 @@ public class ToyyibPayController extends HttpServlet {
     }
 
     private String buildReturnUrl(String type, int id) {
-        return publicBaseUrl + APP_CONTEXT + "/payment/return?type=" + type + "&id=" + id;
+        return publicBaseUrl + appContext + "/payment/return?type=" + type + "&id=" + id;
     }
 
     private Properties loadConfigProperties() {
