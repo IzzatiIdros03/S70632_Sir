@@ -48,9 +48,20 @@ public class ToyyibPayController extends HttpServlet {
         catDonation = getConfig("TOYYIBPAY_CAT_DONATION", "toyyibpay.cat_donation", "d6hgyn2q");
         toyyibpayBaseUrl = normalizeBaseUrl(getConfig("TOYYIBPAY_BASE_URL", "toyyibpay.base_url", "https://dev.toyyibpay.com/"));
         publicBaseUrl = normalizePublicBaseUrl(getConfig("MMS_PUBLIC_BASE_URL", "mms.public_base_url", "http://localhost:8081"));
-        appContext = getConfig("MMS_APP_CONTEXT", "mms.app_context", "/S70632_Sir");
-        // Normalisasi: kalau env diset sebagai "/" atau "ROOT", anggap context kosong
-        if (appContext == null || appContext.equalsIgnoreCase("/") || appContext.equalsIgnoreCase("ROOT")) {
+
+        // Baca MMS_APP_CONTEXT terus dari System.getenv (BUKAN melalui getConfig) supaya
+        // value KOSONG ("") dari Railway tetap dihormati sebagai "tiada context path",
+        // bukan dianggap "tiada variable" lalu fallback ke /S70632_Sir.
+        String envContext = System.getenv("MMS_APP_CONTEXT");
+        if (envContext != null) {
+            // Variable wujud (walaupun kosong) — guna terus
+            appContext = envContext.trim();
+        } else {
+            // Variable langsung tiada — fallback untuk persekitaran tempatan (NetBeans)
+            appContext = fileConfig.getProperty("mms.app_context", "/S70632_Sir");
+        }
+        // Normalisasi: "/" atau "ROOT" pun dianggap kosong
+        if (appContext.equals("/") || appContext.equalsIgnoreCase("ROOT")) {
             appContext = "";
         }
     }
