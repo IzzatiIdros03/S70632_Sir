@@ -19,5 +19,5 @@ Thumbs.db
 # Local payment config (secrets)
 /web/WEB-INF/toyyibpay.properties
 
-# Local tooling downloads
+# Local tooling downloadss
 /.tools/
